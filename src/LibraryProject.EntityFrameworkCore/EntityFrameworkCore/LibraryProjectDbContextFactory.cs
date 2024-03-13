@@ -24,6 +24,7 @@ namespace LibraryProject.EntityFrameworkCore
             LibraryProjectDbContextConfigurer.Configure(builder, configuration.GetConnectionString(LibraryProjectConsts.ConnectionStringName));
 
             return new LibraryProjectDbContext(builder.Options);
+
         }
     }
 }
