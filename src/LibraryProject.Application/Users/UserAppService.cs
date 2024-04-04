@@ -53,6 +53,7 @@ namespace LibraryProject.Users
             _logInManager = logInManager;
         }
 
+        [AbpAllowAnonymous]
         public override async Task<UserDto> CreateAsync(CreateUserDto input)
         {
             CheckCreatePermission();

@@ -1821,6 +1821,59 @@ namespace LibraryProject.Migrations
                     b.ToTable("Events");
                 });
 
+            modelBuilder.Entity("LibraryProject.Domain.Files.DataFile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Folder")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StoredFiles");
+                });
+
             modelBuilder.Entity("LibraryProject.Domain.LibraryRooms.LibraryRoom", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1958,9 +2011,6 @@ namespace LibraryProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
@@ -1973,10 +2023,11 @@ namespace LibraryProject.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IdNumber")
+                    b.Property<string>("EmailAddress")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
@@ -1991,14 +2042,11 @@ namespace LibraryProject.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Occupation")
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PassportNumber")
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
 
                     b.Property<Guid?>("RoomBookingId")
                         .HasColumnType("uniqueidentifier");
@@ -2006,18 +2054,18 @@ namespace LibraryProject.Migrations
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("UserId")
+                    b.Property<long?>("UserId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
 
                     b.HasIndex("RoomBookingId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Persons");
+                    b.ToTable("Person");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Person");
                 });
 
             modelBuilder.Entity("LibraryProject.Domain.RoomBookings.RoomBooking", b =>
@@ -2262,6 +2310,26 @@ namespace LibraryProject.Migrations
                     b.HasDiscriminator().HasValue("TenantFeatureSetting");
                 });
 
+            modelBuilder.Entity("LibraryProject.Domain.Admin.Admin", b =>
+                {
+                    b.HasBaseType("LibraryProject.Domain.Persons.Person");
+
+                    b.Property<string>("staffID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("Admin");
+                });
+
+            modelBuilder.Entity("LibraryProject.Domain.Member.Member", b =>
+                {
+                    b.HasBaseType("LibraryProject.Domain.Persons.Person");
+
+                    b.Property<string>("memberID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("Member");
+                });
+
             modelBuilder.Entity("Abp.Authorization.Roles.RoleClaim", b =>
                 {
                     b.HasOne("LibraryProject.Authorization.Roles.Role", null)
@@ -2495,25 +2563,15 @@ namespace LibraryProject.Migrations
 
             modelBuilder.Entity("LibraryProject.Domain.Persons.Person", b =>
                 {
-                    b.HasOne("LibraryProject.Authorization.Roles.Role", "RoleModel")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("LibraryProject.Domain.RoomBookings.RoomBooking", null)
                         .WithMany("GroupMembers")
                         .HasForeignKey("RoomBookingId");
 
-                    b.HasOne("LibraryProject.Authorization.Users.User", "UserModel")
+                    b.HasOne("LibraryProject.Authorization.Users.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("RoleModel");
-
-                    b.Navigation("UserModel");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("LibraryProject.Domain.RoomBookings.RoomBooking", b =>

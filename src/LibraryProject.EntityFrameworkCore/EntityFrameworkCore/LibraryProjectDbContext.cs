@@ -15,6 +15,9 @@ using LibraryProject.Domain.RoomSlots;
 using LibraryProject.Domain.PenaltyFee;
 using LibraryProject.Domain.RoomBookings;
 using LibraryProject.Domain.BookAccounts;
+using LibraryProject.Domain.Member;
+using LibraryProject.Domain.Admin;
+using LibraryProject.Domain.Files;
 
 
 namespace LibraryProject.EntityFrameworkCore
@@ -22,7 +25,8 @@ namespace LibraryProject.EntityFrameworkCore
     public class LibraryProjectDbContext : AbpZeroDbContext<Tenant, Role, User, LibraryProjectDbContext>
     {
         /* Define a DbSet for each entity of the application */
-        public DbSet<Person> Persons { get; set; }
+        public DbSet<Member> Members { get; set; }
+        public DbSet<Admin> Admins { get; set; }
         //public DbSet<Role> Roles {  get; set; } // 
         public DbSet<Book> Books { get; set; }
         public DbSet<BookRequest> BookRequests { get; set; }
@@ -36,6 +40,7 @@ namespace LibraryProject.EntityFrameworkCore
         public DbSet<PenaltyFee> PenaltyFee { get; set; }
         public DbSet<RoomBooking> RoomBooking { get; set; }
         public DbSet<BookAccount> BookAccount { get; set; }
+        public DbSet<DataFile> StoredFiles { get; set; }
         public LibraryProjectDbContext(DbContextOptions<LibraryProjectDbContext> options)
             : base(options)
         {

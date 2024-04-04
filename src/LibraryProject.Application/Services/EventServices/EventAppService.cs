@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace LibraryProject.Services.EventServices
 {
-    public class EventAppService : LibraryProjectAppServiceBase, IEventAppService
+    public class EventAppService : ApplicationService, IEventAppService
     {
 
         private readonly IRepository<Event, Guid> _eventRepository;

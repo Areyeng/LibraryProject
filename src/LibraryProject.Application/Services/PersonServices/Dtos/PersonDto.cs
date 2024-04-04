@@ -12,20 +12,30 @@ using System.Threading.Tasks;
 
 namespace LibraryProject.Services.PersonServices.Dtos
 {
-    [AutoMap(typeof(Person))]
     public class PersonDto : EntityDto<Guid>
     {
-        public virtual string Name { get; set; }
-        public virtual string Surname { get; set; }
-        public virtual int Age { get; set; }
-        public virtual string Email { get; set; }
-        public virtual int RoleId { get; set; }
-
-        public virtual string Occupation { get; set; }
-        public virtual string IdNumber { get; set; }
-        public virtual string PassportNumber { get; set; }
-
-        public virtual long UserId { get; set; }
-
+        public  string Name { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public  string Surname { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public  string EmailAddress { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string PhoneNumber { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Password { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        
+   
+ 
     }
 }

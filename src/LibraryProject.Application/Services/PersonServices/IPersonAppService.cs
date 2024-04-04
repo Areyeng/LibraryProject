@@ -10,10 +10,11 @@ namespace LibraryProject.Services.PersonServices
 {
      public interface IPersonAppService : IApplicationService
     {
-        Task<PersonDto> CreatePersonAsync(PersonDto input);
-        Task<PersonDto> UpdatePersonAsync(PersonDto input);
-        Task Delete (Guid id);
-        Task <PersonDto> GetByPersonId(Guid id);
-        Task<List<PersonDto>> GetAllPersonAsync();
+        Task<PersonDto> CreateAsync(PersonDto input);
+        Task<PersonDto> GetAsync(Guid id);
+        Task<List<PersonDto>> GetAllAsync();
+        Task<PersonDto> UpdateAsync(PersonDto input);
+        Task DeleteAsync (Guid id);
+   
     }
 }

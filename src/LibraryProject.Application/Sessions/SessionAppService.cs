@@ -27,6 +27,7 @@ namespace LibraryProject.Sessions
 
             if (AbpSession.UserId.HasValue)
             {
+                var currentUser = await GetCurrentUserAsync(); 
                 output.User = ObjectMapper.Map<UserLoginInfoDto>(await GetCurrentUserAsync());
             }
 
