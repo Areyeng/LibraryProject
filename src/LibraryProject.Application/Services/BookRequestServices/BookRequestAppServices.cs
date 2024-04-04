@@ -38,8 +38,6 @@ namespace LibraryProject.Services.BookRequestServices
         [HttpPost]
         public async Task<BookRequestDto> CreateBookRequestAsync(BookRequestDto input)
         {
-            try
-            {
                 var book = await _bookRepository.GetAsync(input.BookRequestedId);
                 var member = await _memberRepository.GetAsync(input.RequestorId);
                 var librarian = await _librarianRepository.GetAsync(input.BookRequestedId); // Assuming input.BookId refers to the Id of the book being requested
@@ -56,12 +54,7 @@ namespace LibraryProject.Services.BookRequestServices
                 var createdBookRequestDto = ObjectMapper.Map<BookRequestDto>(createdBookRequest);
 
                 return createdBookRequestDto;
-            }
-            catch (Exception ex)
-            {
-                // Handle exceptions, log errors, or rethrow the exception
-                throw;
-            }
+
         }
 
 
