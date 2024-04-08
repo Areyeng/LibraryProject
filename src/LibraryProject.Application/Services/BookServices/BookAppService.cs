@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace LibraryProject.Services.BookServices
 {
-    [AbpAuthorize]
+    //[AbpAuthorize]
     public class BookAppService: AsyncCrudAppService<Book, BookDto, Guid>
     {
         public BookAppService(Abp.Domain.Repositories.IRepository<Book, Guid> repository) : base(repository)
