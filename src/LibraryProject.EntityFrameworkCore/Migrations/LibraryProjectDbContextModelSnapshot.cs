@@ -2018,6 +2018,11 @@ namespace LibraryProject.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Persons");
+<<<<<<< Updated upstream
+=======
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Person");
+>>>>>>> Stashed changes
                 });
 
             modelBuilder.Entity("LibraryProject.Domain.RoomBookings.RoomBooking", b =>

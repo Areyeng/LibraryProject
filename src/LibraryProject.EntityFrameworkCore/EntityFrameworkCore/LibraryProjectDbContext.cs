@@ -15,6 +15,14 @@ using LibraryProject.Domain.RoomSlots;
 using LibraryProject.Domain.PenaltyFee;
 using LibraryProject.Domain.RoomBookings;
 using LibraryProject.Domain.BookAccounts;
+<<<<<<< Updated upstream
+=======
+using LibraryProject.Domain.Member;
+using LibraryProject.Domain.Admin;
+using LibraryProject.Domain.Files;
+using Abp.Domain.Repositories;
+using System;
+>>>>>>> Stashed changes
 
 
 namespace LibraryProject.EntityFrameworkCore
@@ -36,6 +44,12 @@ namespace LibraryProject.EntityFrameworkCore
         public DbSet<PenaltyFee> PenaltyFee { get; set; }
         public DbSet<RoomBooking> RoomBooking { get; set; }
         public DbSet<BookAccount> BookAccount { get; set; }
+<<<<<<< Updated upstream
+=======
+        public DbSet<DataFile> StoredFiles { get; set; }
+        public DbSet<Person> Persons { get; set; }
+
+>>>>>>> Stashed changes
         public LibraryProjectDbContext(DbContextOptions<LibraryProjectDbContext> options)
             : base(options)
         {

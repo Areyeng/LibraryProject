@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace LibraryProject.Services.BookServices
 {
+<<<<<<< Updated upstream
+=======
+    //[AbpAuthorize]
+>>>>>>> Stashed changes
     public class BookAppService: AsyncCrudAppService<Book, BookDto, Guid>
     {
         public BookAppService(Abp.Domain.Repositories.IRepository<Book, Guid> repository) : base(repository)

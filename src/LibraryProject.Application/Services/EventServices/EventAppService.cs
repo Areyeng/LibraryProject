@@ -53,7 +53,7 @@ namespace LibraryProject.Services.EventServices
             var events = await _eventRepository.GetAsync(id);
             return ObjectMapper.Map<EventDto>(events);
         }
-
+        
         //GetAll
         [HttpGet]
         public async Task<List<EventDto>> GetAllEventAsync()
