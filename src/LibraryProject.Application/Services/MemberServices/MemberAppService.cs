@@ -7,6 +7,7 @@ using LibraryProject.Authorization.Users;
 using LibraryProject.Domain.Admin;
 using LibraryProject.Domain.Member;
 using LibraryProject.Services.AdminServices.Dtos;
+using LibraryProject.Services.EventServices.Dto;
 using LibraryProject.Services.MemberServices.Dtos;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -61,9 +62,9 @@ namespace LibraryProject.Services.MemberServices
             [HttpGet]
             [Route("{id:Guid}")]
 
-            public async Task<MemberDto> GetMemberAsync(Guid id)
+        public async Task<MemberDto> GetMemberAsync(Guid id)
             {
-                //linq query to get the librarian by id
+                
                 var member = await _memberRepository.GetAllIncluding(e => e.User)
                     .FirstOrDefaultAsync(e => e.Id == id);
                 if (member == null)
@@ -88,7 +89,14 @@ namespace LibraryProject.Services.MemberServices
                 identityResult.CheckErrors(LocalizationManager);
             }
 
-       
+        //GetAll
+        [HttpGet]
+        public async Task<List<MemberDto>> GetAllMembersAsync()
+        {
+            var members = await _memberRepository.GetAllListAsync();
+            return ObjectMapper.Map<List<MemberDto>>(members);
+        }
+
 
 
     }

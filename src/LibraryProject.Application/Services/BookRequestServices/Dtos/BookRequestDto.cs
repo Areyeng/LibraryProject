@@ -12,15 +12,20 @@ using System.Threading.Tasks;
 
 namespace LibraryProject.Services.BookRequestServices.Dtos
 {
-    [AutoMapTo(typeof(BookRequest))]
-    public class BookRequestDto : EntityDto<Guid>
-    {
-        public virtual Guid BookRequestedId { get; set; }
-        public virtual Guid RequestorId { get; set; }
-        public virtual DateTime RequestDate { get; set; }
-        public virtual DateTime ReturnDate { get; set; }
-        public virtual bool Collected { get; set; }
+    [AutoMap(typeof(BookRequest))]
+   
 
-        public virtual Guid ReleasorId { get; set; }
-    }
-}
+        //[AutoMapTo(typeof(BookRequest))]
+        public class BookRequestDto : EntityDto<Guid>
+        {
+            public virtual Guid? BookRequestedId { get; set; }
+            public virtual Guid? RequestorId { get; set; }
+            public virtual DateTime? RequestDate { get; set; }
+            public virtual DateTime? ReturnDate { get; set; }
+            public virtual bool? Collected { get; set; }
+
+            public virtual Guid? ReleasorId { get; set; }
+        }
+
+ }
+

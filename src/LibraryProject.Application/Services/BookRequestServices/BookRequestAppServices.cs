@@ -38,15 +38,15 @@ namespace LibraryProject.Services.BookRequestServices
         [HttpPost]
         public async Task<BookRequestDto> CreateBookRequestAsync(BookRequestDto input)
         {
-                var book = await _bookRepository.GetAsync(input.BookRequestedId);
-                var member = await _memberRepository.GetAsync(input.RequestorId);
-                var librarian = await _librarianRepository.GetAsync(input.BookRequestedId); // Assuming input.BookId refers to the Id of the book being requested
+                var book = await _bookRepository.GetAsync((Guid)input.BookRequestedId);
+                var member = await _memberRepository.GetAsync((Guid)input.RequestorId);
+                var librarian = await _librarianRepository.GetAsync((Guid)input.BookRequestedId); // Assuming input.BookId refers to the Id of the book being requested
                 var bookrequest = new BookRequest
                 {
                     Book = book,
                     Person = member,
-                    BookRequestDate = input.RequestDate,
-                    BookReturnDate = input.ReturnDate,
+                    BookRequestDate = (DateTime)input.RequestDate,
+                    BookReturnDate = (DateTime)input.ReturnDate,
                     ReleasedBy = librarian
                 };
 
@@ -56,7 +56,6 @@ namespace LibraryProject.Services.BookRequestServices
                 return createdBookRequestDto;
 
         }
-
 
         //Update
         [HttpPut]
@@ -98,6 +97,18 @@ namespace LibraryProject.Services.BookRequestServices
             var bookrequests = await _bookRequestRepository.GetAll().Where(x=>x.Person.Id == personId).ToListAsync();
             return ObjectMapper.Map<List<BookRequestDto>>(bookrequests);
         }
+        //GetAll for specific month
+        //public async Task<List<BookRequestDto>> GetAllBookRequestByMonth()
+        //{
+        //    var bookrequests = await _bookRequestRepository.GetAll().Where().ToListAsync();
+        //    return ObjectMapper.Map<List<BookRequestDto>>(bookrequests);
+        //}
+
+        //Create
+
+
+        //GetAll
+       
         //GetAll for specific month
         //public async Task<List<BookRequestDto>> GetAllBookRequestByMonth()
         //{
