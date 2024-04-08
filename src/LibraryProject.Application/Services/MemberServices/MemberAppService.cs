@@ -54,40 +54,40 @@ namespace LibraryProject.Services.MemberServices
             return ObjectMapper.Map<MemberDto>(member);
 
         }
-            public async Task DeleteMember(Guid id)
+        public async Task DeleteMember(Guid id)
         {
-                await _memberRepository.DeleteAsync(id);
-            }
+            await _memberRepository.DeleteAsync(id);
+        }
 
-            [HttpGet]
-            [Route("{id:Guid}")]
+        [HttpGet]
+        [Route("{id:Guid}")]
 
         public async Task<MemberDto> GetMemberAsync(Guid id)
-            {
+        {
                 
-                var member = await _memberRepository.GetAllIncluding(e => e.User)
-                    .FirstOrDefaultAsync(e => e.Id == id);
-                if (member == null)
-                {
-                    throw new UserFriendlyException("member not found!");
-                }
-
-
-                return ObjectMapper.Map<MemberDto>(member);
-            }
-            [HttpPut]
-            [Route("{id:Guid}")]
-            public async Task<MemberDto> UpdateMemberAsync(MemberDto input)
+            var member = await _memberRepository.GetAllIncluding(e => e.User)
+                .FirstOrDefaultAsync(e => e.Id == id);
+            if (member == null)
             {
-                var member = await _memberRepository.GetAsync(input.Id);
-                var update = await _memberRepository.UpdateAsync(ObjectMapper.Map(input, member));
+                throw new UserFriendlyException("member not found!");
+            }
 
-                return ObjectMapper.Map<MemberDto>(update);
-            }
-            protected virtual void CheckErrors(IdentityResult identityResult)
-            {
-                identityResult.CheckErrors(LocalizationManager);
-            }
+
+            return ObjectMapper.Map<MemberDto>(member);
+        }
+        [HttpPut]
+        [Route("{id:Guid}")]
+        public async Task<MemberDto> UpdateMemberAsync(MemberDto input)
+        {
+            var member = await _memberRepository.GetAsync(input.Id);
+            var update = await _memberRepository.UpdateAsync(ObjectMapper.Map(input, member));
+
+            return ObjectMapper.Map<MemberDto>(update);
+        }
+        protected virtual void CheckErrors(IdentityResult identityResult)
+        {
+            identityResult.CheckErrors(LocalizationManager);
+        }
 
         //GetAll
         [HttpGet]
@@ -96,8 +96,5 @@ namespace LibraryProject.Services.MemberServices
             var members = await _memberRepository.GetAllListAsync();
             return ObjectMapper.Map<List<MemberDto>>(members);
         }
-
-
-
     }
 }
