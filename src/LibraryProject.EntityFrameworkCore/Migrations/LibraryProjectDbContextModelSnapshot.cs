@@ -2019,7 +2019,10 @@ namespace LibraryProject.Migrations
 
                     b.ToTable("Persons");
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Person");
 >>>>>>> Stashed changes

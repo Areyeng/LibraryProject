@@ -22,6 +22,9 @@ using LibraryProject.Domain.Admin;
 using LibraryProject.Domain.Files;
 using Abp.Domain.Repositories;
 using System;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 
@@ -49,6 +52,9 @@ namespace LibraryProject.EntityFrameworkCore
         public DbSet<DataFile> StoredFiles { get; set; }
         public DbSet<Person> Persons { get; set; }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         public LibraryProjectDbContext(DbContextOptions<LibraryProjectDbContext> options)
             : base(options)

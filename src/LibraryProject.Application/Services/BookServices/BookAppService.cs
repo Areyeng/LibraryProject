@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 namespace LibraryProject.Services.BookServices
 {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+    //[AbpAuthorize]
+>>>>>>> Stashed changes
 =======
     //[AbpAuthorize]
 >>>>>>> Stashed changes

@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 namespace LibraryProject.Services.BookRequestServices.Dtos
 {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [AutoMap(typeof(BookRequest))]
     public class BookRequestDto : EntityDto<Guid>
     {
@@ -24,6 +25,18 @@ namespace LibraryProject.Services.BookRequestServices.Dtos
         public virtual bool Collected { get; set; }
 
         public virtual Person ReleasedBy { get; set; }
+=======
+    //[AutoMapTo(typeof(BookRequest))]
+    public class BookRequestDto : EntityDto<Guid>
+    {
+        public virtual Guid? BookRequestedId { get; set; }
+        public virtual Guid? RequestorId { get; set; }
+        public virtual DateTime? RequestDate { get; set; }
+        public virtual DateTime? ReturnDate { get; set; }
+        public virtual bool? Collected { get; set; }
+
+        public virtual Guid? ReleasorId { get; set; }
+>>>>>>> Stashed changes
 =======
     //[AutoMapTo(typeof(BookRequest))]
     public class BookRequestDto : EntityDto<Guid>
